@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         std_fees: {
-            type: Sequelize.STRING
+            type: Sequelize.FLOAT
         },
         std_level: {
             type: Sequelize.STRING
