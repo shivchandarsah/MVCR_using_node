@@ -93,11 +93,7 @@ exports.updateStudent = async (req, res) => {
             if (profileImage && req.body.std_image) {
                 const oldImagePath = path.join(__dirname, 'uploads', req.body.std_image);
                 fs.unlink(oldImagePath, (err) => {
-                    if (err) {
-                        console.error('Error deleting old image:', err);
-                    } else {
-                        console.log('Old image deleted successfully');
-                    }
+                    if (err) console.error('Error deleting old image:', err);
                 });
             }
 
@@ -118,7 +114,32 @@ exports.updateStudent = async (req, res) => {
     } catch (error) {
         console.error("Error updating student:", error);
         res.status(500).send("Failed to update student");
-    }
+    }
+};
+
+exports.postStudentData = async (req, res) => {
+    try {
+        // Use multer to handle file upload
+        uploadFile(req, res, async (err) => {
+            if (err) {
+                return res.status(400).json({ error: err.message });
+            }
+
+            // Extract the uploaded file name
+            const profileImage = req.file ? req.file.filename : null;
+
+            // Create a new student entry with the data from the form
+            await STUDENT.create({
+                ...req.body,
+                std_image: profileImage // Store the file name in the database
+            });
+
+            console.log(req.body, profileImage);
+            res.redirect("/all-students");
+        });
+    } catch (error) {
+        console.error("Error adding student:", error);
+        res.status(500).send("Failed to add student");}
 };
 
 exports.addFine = async (req, res) => {
