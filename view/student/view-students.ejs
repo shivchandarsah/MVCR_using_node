@@ -16,7 +16,7 @@
         .container {
             max-width: 900px;
             margin: 30px auto;
-            padding: 40px 0;
+            padding: 20px;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -24,7 +24,7 @@
 
         .contain {
             width: 100%;
-            padding: 5px;
+            padding: 10px;
             background-color: #2C3E50;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -34,7 +34,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         table th, table td {
@@ -46,7 +46,6 @@
         table th {
             background-color: #2C3E50;
             color: white;
-            padding: 10px;
         }
 
         table tr:nth-child(even) {
@@ -55,13 +54,12 @@
         .btn {
             margin: 5px;
         }
-       
     </style>
 </head>
 <body>
 
     <nav class="contain">
-        <%- include("navbar") %>
+        <%- include("index") %>
     </nav>
 
     <div class="container">
@@ -71,6 +69,7 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>Address</th>
                     <th>Age</th>
                     <th>Fee</th>
@@ -81,7 +80,7 @@
             <tbody>
                 <% if(data.length === 0) { %>
                     <tr>
-                        <td colspan="7">No data</td>
+                        <td colspan="8">No data</td>
                     </tr>
                 <% } %>
                 
@@ -89,6 +88,7 @@
                 <tr>
                     <td><%= i + 1 %></td>
                     <td><%= data[i].std_name %></td>
+                    <td><img src="uploads/<%= data[i].std_image %>" alt="" width="100px" height="100px"></td>
                     <td><%= data[i].std_address %></td>
                     <td><%= data[i].std_age %></td>
                     <td><%= data[i].std_fees %></td>
@@ -106,4 +106,4 @@
     </div>
     <%- include("footer") %>
 </body>
-</html>  
+</html>

@@ -1,5 +1,8 @@
 const db = require("./../../model/index")
 const STUDENT = db.Student
+const fs = require("fs");
+const path = require("path");
+const multer = require("multer");
 
 exports.getStudents = (req,res) => {
     res.render("student/index")
@@ -8,15 +11,24 @@ exports.getAddStudent = (req, res) => {
     res.render("student/add-student");
 }
 
+
+
 exports.postStudentData = async (req, res) => {
-    
-        const process = await STUDENT.create({ ...req.body });
-       
-         res.redirect("/all-students"); 
-    
-};
+    if (!req.body.title && !req.file.filename) {
+        return res.status(400).send("Please Fill the form");
+    }
 
-
+    try {
+        const process = await STUDENT.create({
+            ...req.body,
+            std_image: req.file.filename
+        })
+        return res.redirect('/all-students')
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send("Internal Server Error");
+    }
+}
 exports.getAllStudent = async (req, res) => {
     let data = await STUDENT.findAll()
     console.log("This is fina all data la")
@@ -31,6 +43,7 @@ exports.deleteStudent = async (req, res) => {
             id: req.params.id
         }
     })
+    
 
     res.redirect('/all-students')
 }
@@ -46,16 +59,67 @@ exports.getEditStudent = async (req, res) => {
     }
 
 }
+const upload = multer({ dest: "uploads/" });
+
+// Helper function to handle file uploads
+const uploadFile = (req, res, next) => {
+    const uploadSingle = upload.single("std_image");
+    uploadSingle(req, res, (err) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        next();
+    });
+};
 
 exports.updateStudent = async (req, res) => {
-    let data = await STUDENT.update({ ...req.body, }, {
-        where: {
-            id: req.params.ramey,
-        },
-    })
-    res.redirect('/all-students')
-}
+    try {
+        // Use multer to handle file upload during update
+        uploadFile(req, res, async (err) => {
+            if (err) {
+                return res.status(400).json({ error: err.message });
+            }
 
+            const studentId = req.params.id; // Get student ID from URL
+            const profileImage = req.file ? req.file.filename : null; // Get the uploaded file name, if any
+
+            // Prepare updated data (preserving the old image if no new image is uploaded)
+            const updatedData = {
+                ...req.body,
+                std_image: profileImage ? profileImage : req.body.std_image // Preserve old image if no new one
+            };
+
+            // If a new image is uploaded, delete the old one
+            if (profileImage && req.body.std_image) {
+                const oldImagePath = path.join(__dirname, 'uploads', req.body.std_image);
+                fs.unlink(oldImagePath, (err) => {
+                    if (err) {
+                        console.error('Error deleting old image:', err);
+                    } else {
+                        console.log('Old image deleted successfully');
+                    }
+                });
+            }
+
+            // Update the student information in the database
+            const result = await STUDENT.update(updatedData, {
+                where: {
+                    id: studentId
+                }
+            });
+
+            // If update is successful, redirect to the all-students page
+            if (result[0] === 1) {
+                res.redirect('/all-students');
+            } else {
+                res.status(404).send("Student not found");
+            }
+        });
+    } catch (error) {
+        console.error("Error updating student:", error);
+        res.status(500).send("Failed to update student");
+    }
+};
 
 exports.addFine = async (req, res) => {
     let id = req.params.id

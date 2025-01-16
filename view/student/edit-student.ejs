@@ -95,7 +95,7 @@
 
     <!-- Navbar -->
     <nav class="contain">
-        <%- include("navbar") %>
+        <%- include("index") %>
     </nav>
 
     <!-- Edit Student Form -->
@@ -106,19 +106,34 @@
                 <p>Please fill up all the details of the student</p>
             </div>
             <div class="col-12">
-                <form action="/update-student/<%= data.id %>" method="post">
+                <form action="/update-student/<%= data.id %>" method="post" enctype="multipart/form-data">
                     <label for="name">Student Name</label>
                     <input type="text" placeholder="Enter student name" name="std_name" value="<%= data.std_name %>" required> <br>
-                    <label for="address">Student Address</label>
+                    
+                   <!-- Image Upload Field -->
+           
+                <label for="std_image">Upload New Image</label>
+                <input type="file" class="form-control" name="std_image" accept="image/*">
+                <% if (data.std_image) { %>
+                    <p style="text-align: left;">Current Image:</p>
+                    <img src="/uploads/<%= data.std_image %>" alt="Current Student Image" class="student-image-preview" width="100px" height="100px">
+                <% } %>
+                   
+                    <br><label for="address">Student Address</label>
                     <input type="text" placeholder="Enter student address" name="std_address" value="<%= data.std_address %>" required> <br>
+                    
                     <label for="age">Student Age</label>
                     <input type="text" placeholder="Enter student age" name="std_age" value="<%= data.std_age %>" required> <br>
+                    
                     <label for="fees">Student Fees</label>
                     <input type="text" placeholder="Enter student fees" name="std_fees" value="<%= data.std_fees %>" required> <br>
+                    
                     <label for="level">Student Level</label>
                     <input type="text" placeholder="Enter student level" name="std_level" value="<%= data.std_level %>" required> <br>
+                    
                     <input type="submit" class="btn" value="Update the Data">
                 </form>
+                
             </div>
         </div>
     </div>

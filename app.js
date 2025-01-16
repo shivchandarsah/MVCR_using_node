@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
-const port = 3003
+const path = require('path')
+const multer = require('multer')
+const port = 3000
 
 
 
@@ -17,7 +19,7 @@ app.set('views', 'view')
 //Parsing Data to backend
 app.use(express.urlencoded())
 app.use(express.json())
-
+app.use("/uploads",express.static(path.join(__dirname,"uploads")))
 
 //Calling the routers
 const indexRouter = require('./routes/index')

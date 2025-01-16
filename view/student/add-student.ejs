@@ -36,7 +36,7 @@
             margin-bottom: 20px;
         }
     
-        h1 {
+        h2 {
             text-align: center;
             margin-bottom: 10px;
         }
@@ -99,7 +99,7 @@
     
     <nav class="contain border-radius=none" >
            
-        <%- include("navbar") %>
+        <%- include("index") %>
             </nav>
 
     <div class="container">
@@ -107,13 +107,15 @@
         <div class="row">
            
             <div class="col-12">
-                <h1>Add Students</h1>
+                <h2>Add Students</h2>
                 <p>Please fill up all the details of Students</p>
             </div>
             <div class="col-12">
-                <form action="/save-student" method="post">
+                <form action="/save-student" method="post" enctype="multipart/form-data">
                     <label for="name">Student Name</label>
                     <input type="text" placeholder="Enter your name" name="std_name" required> <br>
+                    <label for="image">Upload Image</label>
+                    <input type="file" name="std_image" required> <br>
                     <label for="Address">Student Address</label>
                     <input type="text" placeholder="Enter your address" name="std_address" required> <br>
                     <label for="age">Student Age</label>

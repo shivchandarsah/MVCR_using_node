@@ -3,18 +3,23 @@ module.exports = (sequelize, Sequelize) => {
         std_name: {
             type: Sequelize.STRING
         },
+        std_image: {
+            type: Sequelize.STRING
+        },
         std_address: {
             type: Sequelize.STRING
         },
+       
         std_age: {
             type: Sequelize.STRING
         },
         std_fees: {
-            type: Sequelize.FLOAT
+            type: Sequelize.STRING
         },
         std_level: {
             type: Sequelize.STRING
-        },
+        }
+        
     })
 
   
