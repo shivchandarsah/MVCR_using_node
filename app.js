@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 3001
+const port = 3003
 
 
 
 //DB Connection
 const db = require('./model/index')
-db.sequelize.sync({force: true})
+db.sequelize.sync({force: false})
 
 
 //Seting up View Engine
