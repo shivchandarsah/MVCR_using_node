@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Website</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color:#2C3E50 ;
+            color: white;
+            padding: 30px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            padding: 0 15px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+        }
+
+        .footer-section ul li {
+            margin: 5px 0;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #222;
+        }
+
+        .footer-bottom p {
+            font-size: 0.9em;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main content of the website goes here -->
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We provide comprehensive student information including academic records, attendance, and schedules.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="add-student">Add Student</a></li>
+                    <li><a href="/all-students">Student Details</a></li>
+                    
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: sahshivchandar14@gmail.com</p>
+                <p>Phone: +977 9825808450</p>
+                <p>Address: Kathmandu, Nepal</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Student Information System. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
