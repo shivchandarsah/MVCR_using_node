@@ -24,10 +24,12 @@ app.use("/uploads",express.static(path.join(__dirname,"uploads")))
 //Calling the routers
 const indexRouter = require('./routes/index')
 const studentRouter = require('./routes/student')
+const authRouter = require('./routes/auth')
 
 
 app.use(indexRouter)
 app.use(studentRouter)
+app.use(authRouter)
 
 app.listen(port, () => {
 console.log(`Example app listening on port http://localhost:${port}`)

@@ -12,7 +12,7 @@ routes.get('/delete-student/:id', studentController.deleteStudent)
 routes.get('/edit-student/:id', studentController.getEditStudent)
 routes.get("/add-fine/:id", studentController.addFine)
 routes.get("/reduce-fine/:id", studentController.reduceFine)
-routes.get('/',studentController.getStudents)
+routes.get('/index',studentController.getStudents)
 
 routes.post('/save-student', studentController.postStudentData )
 routes.post('/update-student/:id', studentController.updateStudent)

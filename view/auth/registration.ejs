@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #2C3E50;
+            color: #ECF0F1; /* Light color for text contrast */
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #34495E; /* Slightly lighter than the background */
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #F1C40F; /* Gold for a vibrant title */
+        }
+
+        .form-control {
+            background-color: #2C3E50;
+            border: 1px solid #ECF0F1;
+            color: #ECF0F1;
+        }
+
+        .form-control::placeholder {
+            color: #95A5A6; /* Subtle placeholder color */
+        }
+
+        .btn-primary {
+            background-color: #1ABC9C; /* Teal for button */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #16A085; /* Darker teal on hover */
+        }
+
+        a {
+            color: #F1C40F;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-container">
+                    <h2>Register</h2>
+                    <form action="/register" method="post">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="What shall we call you?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </form>
+                    <p class="text-center mt-3">
+                        Already have an account? <a href="/">Log in here</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
