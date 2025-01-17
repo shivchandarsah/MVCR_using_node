@@ -21,6 +21,13 @@ File Upload: Multer for handling file uploads (profile pictures)
 Authentication: JWT (for secure session management)
 CSS: Custom styling with Bootstrap classes
 
+Database
+xampp is required
+db.sequelize.sync({force: false}) => make false to true (app.js) 
+Only need to create database name, table should be self created
+Once above Step is done then again make the second step false
+
+
 Installation
 Prerequisites
 Before setting up the project, ensure that you have the following installed:
