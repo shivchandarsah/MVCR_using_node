@@ -114,7 +114,7 @@ exports.updateStudent = async (req, res) => {
     } catch (error) {
         console.error("Error updating student:", error);
         res.status(500).send("Failed to update student");
-    }
+    }
 };
 
 exports.postStudentData = async (req, res) => {
